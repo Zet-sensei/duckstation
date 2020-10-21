@@ -40,4 +40,14 @@ public:
   void SetVSync(bool enabled) override;
 
   bool Render() override;
+
+  bool BeginSetDisplayPixels(DisplayPixelFormat format, u32 width, u32 height, void** out_buffer,
+                             u32* out_pitch) override;
+  void EndSetDisplayPixels() override;
+
+  bool SetDisplayPixels(DisplayPixelFormat format, u32 width, u32 height, const void* buffer, u32 pitch) override;
+
+private:
+  std::vector<u32> m_frame_buffer;
+  u32 m_frame_buffer_pitch = 0;
 };
